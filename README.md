@@ -12,9 +12,14 @@ Traditional surveillance relies heavily on human attention, which degrades rapid
 - **Interactive Dashboard:** A clean Streamlit web interface for video processing and alert management.
 - **Data-Centric Design:** Modular scripts for custom data collection and model retraining.
 
-# Installation & Setup
-# 1. Clone the Repository
-'''
-git clone https://github.com/your-username/anomaly-detection-system.git
-cd anomaly-detection-system
-'''
+# Methodology
+The system follows a linear pipeline:
+1. **Frame Capture:** Video frames are read via OpenCV.**
+2. **Landmark Extraction:** MediaPipe identifies $(x, y)$ coordinates for 33 body joints.
+3. **Feature Vectorization:** Landmarks are flattened into a 66-feature vector.
+4. **Inference:** The vector is passed to the trained XGBoost model.
+5. **Logic Trigger:** If prediction == 1, a cooldown timer is checked, an image is saved to /alerts, and an email is dispatched.
+
+Author: Paramasivan A
+
+Contact: [paramasivana02@gmail.com]
